@@ -1,0 +1,295 @@
+
+$color_background: rgba(236, 240, 241, 1.0);
+$color_border: rgba(149, 165, 166, 1.0);
+$color_text: rgba(44, 62, 80, 1.0);
+$color_white: #fefefe;
+
+$color_hover: rgba(52, 152, 219,1.0);
+$color_link: rgba(41, 128, 185,1.0);
+
+$color_green: #27ae60;
+$color_red: rgba(231, 76, 60,1.0);
+$color_darkred: rgba(192, 57, 43,1.0);
+
+$transition_hover: background-color .25s ease-out, color .25s ease-out;
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Encode Sans", Helvetica Neue, Helvetica, sans-serif;
+  background-color: $color_background;
+  color: $color_text;
+}
+
+body, input, select {
+  font-size: 16px;
+  line-height: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Apply max-width to Replaced Elements and Form controls */
+img, video, audio, canvas, input,
+select, button, progress { max-width: 100%; }
+
+/* Make file and submit inputs text-wrap */
+input[type="file"],
+input[type="submit"] { white-space: pre-wrap; }
+
+/* Fix Progress and Range Inputs */
+progress,
+input[type="range"] { width: 100%; }
+
+/* Fix Number Inputs in Firefox */
+@supports (--moz-appearance: none) {
+  input[type="number"] { width: 100%; }
+}
+
+header {
+  grid-area: header;
+  border-bottom: 2px solid $color_border;
+  color: $color_text;
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 2px;
+  margin-top: 10px;
+  height: 30px;
+}
+
+nav {
+  //justify-self: stretch;
+  align-self: start;
+  grid-area: nav;
+  margin: 0;
+  display: flex;
+  justify-content: space-evenly;
+  a {
+    text-align: center;
+    display: block;
+    background-color: $color_link;
+    color: $color_white;
+    transition: $transition_hover;
+    padding: 5px 15px;
+    margin: 1px;
+    &.active,
+    &:hover {
+      background-color: $color_hover;
+    }
+    svg.fa-fw {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5px;
+    }
+  }
+
+}
+.content {
+  grid-area: content;
+  background-color: $color_white;
+  padding: 10px;
+}
+
+footer {
+  grid-area: footer;
+}
+
+.wrapper {
+  height: 100vh;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas:
+    "header"
+    "nav"
+    "content"
+    "footer";
+  grid-template-rows: auto  auto 1fr auto;
+}
+
+
+@media (min-width: 700px) {
+
+  .wrapper {
+    grid-gap: 20px;
+    grid-template-areas:
+      ". header header  header . "
+      ". nav    content content ."
+      ". footer footer  footer .";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 1fr 4fr auto;
+  }
+
+  nav {
+    height: auto;
+    flex-direction: column;
+    a {
+      text-align: left;
+      padding: 15px 15px;
+      margin-bottom: 5px;
+      svg.fa-fw {
+        display: inline-block;
+        margin: 0 10px 0 0px;
+      }
+    }
+  }
+  header {
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: left;
+  }
+}
+
+.groups {
+
+  .head {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    .buttons {
+      text-align: right;
+    }
+  }
+
+  .create {
+    label {
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .button {
+      margin-right: 5px;
+    }
+  }
+
+  .table {
+    .row {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns:
+        minmax(40px, 60px)
+        minmax(100px, auto)
+        minmax(40px, 250px)
+        minmax(40px, 100px)
+        ;
+      margin-bottom: 10px;
+
+      & > a,
+      & > div {
+        &:nth-child(1) { // id
+          text-align: right;
+          line-height: 22px;
+        }
+        &:nth-child(2) { // name
+
+        }
+        &:nth-child(3) { // info
+          line-height: 22px;
+          .button {
+            margin-right: 10px;
+          }
+        }
+        &:nth-child(4) { // remove
+
+        }
+      }
+      .button {
+        padding: 3px 16px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+input {
+  box-sizing: border-box;
+  border: none;
+  background-color: $color_background;
+  padding: 1px 3px;
+}
+
+.button {
+  display: inline-block;
+  text-align: center;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-appearance: none;
+  transition: $transition_hover;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 12px 16px;
+  margin: 0 0 16px;
+  font-size: .9rem;
+  background-color: $color_link;
+  color: $color_white;
+  &:hover {
+    background-color: $color_hover;
+  }
+  &.expand {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  &.warning,
+  &.error {
+    background-color: $color_red;
+  }
+  &.success {
+    background-color: $color_green;
+  }
+  &.secondary {
+    background-color: $color_border;
+  }
+}
+
+.label {
+  padding: 1px 3px;
+  &.success {
+    background-color: $color_green;
+    color: $color_white;
+    font-weight: bold;
+  }
+  &.error {
+    background-color: $color_red;
+    color: $color_white;
+    font-weight: bold;
+  }
+}
+
+.hide {
+  display: none !important;
+}
+
+.callout {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border: 1px solid $color_border;
+  // position: relative;
+  background-color: $color_white;
+  color: $color_text;
+  &.warning {
+    border-color: $color_red;
+    background-color: $color_red;
+    color: $color_white;
+  }
+  &.success {
+    border-color: $color_green;
+    background-color: $color_green;
+    color: $color_white;
+  }
+  &.info {
+    border-color: $color_hover;
+    background-color: $color_hover;
+    color: $color_white;
+  }
+}

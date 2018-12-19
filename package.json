@@ -1,0 +1,20 @@
+{
+  "name": "basic_webapp_01",
+  "version": "0.3.2",
+  "description": "Example Client App #01 with TypeScript",
+  "main": "./scripts/app.js",
+  "types": "./scripts/typings.d.ts",
+  "dependencies": {},
+  "devDependencies": {
+    "opener": "*"
+  },
+  "scripts": {
+    "start": "opener index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/octlabs/csa-151-c30-basic-webapp-01.git"
+  },
+  "author": "Stefan Rieger",
+  "license": "GPL-3.0"
+}
